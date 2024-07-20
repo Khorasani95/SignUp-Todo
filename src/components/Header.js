@@ -25,7 +25,7 @@ export default function Header() {
                 <Link to={"/Forget"} className="nav-link" >Forget</Link>
               </li>
               <li className="nav-item">
-                <Link to={"/todo"} className="nav-link" >Todo</Link>
+                <Link to={"/todoList"} className="nav-link" >Todo-List</Link>
               </li>
               
             </ul>

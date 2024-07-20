@@ -1,35 +1,45 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function RegisteredUsers() {
+
+  let navigate = useNavigate();
+  const addUserButton = () => {
+    navigate("/register");
+   
+ }
+    let existingUsers = JSON.parse(localStorage.getItem("users"))|| [];
+  console.log('users from locals :>> ', existingUsers);
+  
+
+
   return (
     <>
-      <table class="table">
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <button className="btn btn-primary" onClick={addUserButton}>Add User</button>
+          </div>
+        </div>
+    </div>
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+              {  existingUsers.map((user, i) => {
+                return (
+                      <tr>
+                        <th >{i  + 1 }</th>
+                          <td >{user.fullName}</td>
+                          <td>{user.email}</td>
+                      </tr> 
+                )
+              })}
         </tbody>
       </table>
     </>
@@ -37,3 +47,4 @@ function RegisteredUsers() {
 };
 
 export default RegisteredUsers;
+         

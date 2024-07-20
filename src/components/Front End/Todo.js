@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import TodoList from './TodoList';
 
 // import "../../scss"
 
 export default function Todo() {
-  let existingTodos = JSON.parse(localStorage.getItem("Todos list")) || [];
-  console.log(existingTodos);
+  let newTodo = JSON.parse(localStorage.getItem("Todos")) || [];
+  console.log("New Todo:", newTodo);
   const [todo, setTodo] = useState({
     title: "", location: "", description: "", date: "", status: "", dateCreated: "", user_id: ""
   });
@@ -12,6 +13,7 @@ export default function Todo() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    debugger;
     setTodo({
       ...todo,
       [name]: value
@@ -20,9 +22,12 @@ export default function Todo() {
 
   const todoButton = (e) => {
     e.preventDefault();
-    // let pushedTodo = ...todos ,{existingTodos};
-    console.log("pushedTodo");
-    localStorage.setItem(JSON.stringify(todo))
+    // let pushedTodo = ...todos ,{newTodo};
+    // console.log("pushedTodo");
+    handleChange(e)
+    debugger;
+    let localTodo = localStorage.setItem("Todos",JSON.stringify(todo))
+    console.log(localTodo);
   }
   
   return (
@@ -36,7 +41,7 @@ export default function Todo() {
           <form action="" >
             <div className="col">
               <label htmlFor="title"><h5 className=" text-primary my-2">Enter your Title here:</h5></label>
-              <input type="text"   name="title"  id= "title"className='form-control'/>
+              <input type="text"  name="title" id="title" className='form-control'/>
             </div>
 
             <div className="col">
@@ -57,8 +62,8 @@ export default function Todo() {
               <label htmlFor="date">
                 <h5 className=" text-primary my-2">Enter your Date here:</h5>
               </label>
-              <input type="date"  name="date" id='date' className='form-control my-2'/>
-              <button className='justify-content-center' onClick={todoButton}>Enter </button>
+              <input type="date" name="date" id='date' className='form-control my-2'/>
+              <button className='btn btn-primary' onClick={todoButton}>Enter Todo </button>
             </div>
           </form>
         </div>

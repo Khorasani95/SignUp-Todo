@@ -13,6 +13,7 @@ import Correction from './components/auth/Correction';
 import RegisteredUser from './components/Front End/RegisteredUsers';
 import NoPage from './components/auth/NoPage';
 import './scss/App.scss'
+import TodoList from './components/Front End/TodoList';
 
 function App() {
   return (
@@ -27,11 +28,12 @@ function App() {
         <Route path='./update' element={<Update />} />
         <Route path='.home' element={<Home/>} />
         {/* <Route path="/update" element={<Update />} /> */}
-        <Route path='/todo' element={<Todo />} />
         <Route path='/reset' element={<Reset />} />
         <Route path='/correction' element={<Correction/> } />
         <Route path='/registeredUser' element={<RegisteredUser/> } />
-        <Route path='*' element={<NoPage/> } />
+        <Route path='*' element={<NoPage />} />
+        <Route path='/todoList' element={<TodoList />} />
+        <Route path='/todo' element={<Todo/>} />
         {/* <Route path='/app.scss' element={<App.scss/> } /> */}
       </Routes>
         <Footer/>

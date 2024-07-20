@@ -56,8 +56,9 @@ export default function Login() {
                 
                 <div className="row pt-2">
                   <div className="col-12">
-                   <p> <Link to="/Forget"> <b className='text-black ps-'>Forget Password  </b></Link></p>
                     <input onChange={handleChange}  type="password" className="form-control" name="password"  placeholder="Enter Your Password " /><br />
+                    <p> <Link to="/Forget"> <b className='text-black '>Forget Password  </b></Link></p>
+
                     <div className="container">
                       <p className='p-6'>Don't have an account<Link to="/register"> Register Your Account</Link></p> 
                     </div>

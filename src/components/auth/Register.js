@@ -50,9 +50,9 @@ export default function Register() {
   }
   return (
     <>
-      <p>fullName: {fullName}</p>
+      {/* <p>fullName: {fullName}</p>
       <p>Email: {email}</p>
-      <p>Password: {password}</p>
+      <p>Password: {password}</p> */}
 
       <div className="container w-25 my-5">
         <div className="row ">
