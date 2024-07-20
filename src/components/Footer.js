@@ -1,15 +1,15 @@
 import React from 'react';
 
-export default function Footer() {
+function Footer() {
   return (
     <>
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col">
-          <p className="text-center text-white bg-dark w-100">&copy;All Rights Reserved</p>
+      <nav className="navbar bg-primary" >
+        <div className="container-fluid">
+          <span className="text-white mx-auto">All Rights Reserved</span>
         </div>
-      </div>
-      </div>
+      </nav>
     </>
   )
 }
+
+export default Footer;

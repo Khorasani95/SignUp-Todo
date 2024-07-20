@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Register from './components/auth/Register';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
+import Home from './components/Front End/Home/Home';
 import Forget from './components/auth/Forget';
 import Update from './components/auth/Update';
 import Login from './components/auth/Login';
@@ -18,28 +18,21 @@ import TodoList from './components/Front End/TodoList';
 function App() {
   return (
     <BrowserRouter>
-      <Header/>
       <Routes>
-        
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register />} />
         <Route path='/Forget' element={<Forget />} />
         <Route path='./update' element={<Update />} />
         <Route path='.home' element={<Home/>} />
-        {/* <Route path="/update" element={<Update />} /> */}
         <Route path='/reset' element={<Reset />} />
         <Route path='/correction' element={<Correction/> } />
         <Route path='/registeredUser' element={<RegisteredUser/> } />
         <Route path='*' element={<NoPage />} />
         <Route path='/todoList' element={<TodoList />} />
-        <Route path='/todo' element={<Todo/>} />
-        {/* <Route path='/app.scss' element={<App.scss/> } /> */}
+        <Route path='/todo' element={<Todo />} />
       </Routes>
-        <Footer/>
     </BrowserRouter>
-    
-
   );
 }
 
