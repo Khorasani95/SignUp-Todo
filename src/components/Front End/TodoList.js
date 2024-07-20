@@ -3,20 +3,22 @@ import { useNavigate } from 'react-router-dom';
 
 function TodoList() {
   let navigate = useNavigate();
-  let existingTodos = JSON.parse(localStorage.getItem("Todos list")) || [];
+  let existingTodos = JSON.parse(localStorage.getItem("Todos list"));
+  navigate("/todo");
 
-  const todoButton = () => {
-    navigate("/todo");
-  }
 
   return (
     <>
-      <div className="container">
+      <div className="container mt-3">
         <div className="row">
-          <div className="col">
-            <button className="btn btn-primary" onClick={todoButton}>Add Todo</button>
+          <div className="col d-flex justify-content-end mb-3">
+            <button className="btn btn-primary" onClick={() => navigate("/todoList")}>Add Todo</button>
           </div>
+        </div>
+      </div>
 
+      <div className="container mt-3">
+        {existingTodos && existingTodos.length > 0 ? (
           <table class="table">
             <thead>
               <tr>
@@ -32,27 +34,25 @@ function TodoList() {
 
             <tbody>
               {existingTodos.map((todo, i) => {
-               return(
-                  <tr>
-                  <th scope="row">{i + 1}</th>
-                  <td colspan="1">{ todo.title}</td>
-                  <td colspan="1">{ todo.location}</td>
-                  <td colspan="1">{ todo.description}</td>
-                  <td colspan="1">{ todo.date}</td>
-                  <td colspan="1">{ todo.Status}</td>
-                  <td colspan="1">{ todo.dateCreated}</td>
-                  <td colspan="1">{ todo.user_id}</td>
-              </tr>)
-             })}
-            
+                return (
+                  <tr key={i}>
+                    <th scope="row">{i + 1}</th>
+                    <td colspan="1">{todo.title}</td>
+                    <td colspan="1">{todo.location}</td>
+                    <td colspan="1">{todo.description}</td>
+                    <td colspan="1">{todo.date}</td>
+                    <td colspan="1">{todo.Status}</td>
+                    <td colspan="1">{todo.dateCreated}</td>
+                    <td colspan="1">{todo.user_id}</td>
+                  </tr>
+                )
+              })}
             </tbody>
-
-          </table>
-
-        </div>
+          </table>) : <h3 className="text-primary">You don't have any todos right now</h3>
+        }
       </div>
     </>
-  )
+  );
 }
 
 export default TodoList

@@ -40,7 +40,7 @@ function RegisteredUsers() {
                 })
               }
             </tbody>
-          </table>) : <h3 className="text-primary">No users yet</h3>
+          </table>) : <h3 className="text-primary">You don't have any registered users right now</h3>
         }
       </div>
     </>
