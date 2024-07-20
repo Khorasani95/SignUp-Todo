@@ -18,6 +18,8 @@ import TodoList from './components/Front End/TodoList';
 function App() {
   return (
     <BrowserRouter>
+      <Header />
+
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/login' element={<Login/>}/>
