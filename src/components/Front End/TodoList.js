@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function TodoList() {
   let navigate = useNavigate();
-  let existingTodos = JSON.parse(localStorage.getItem("Todos list"));
-  navigate("/todo");
-
+  let existingTodos = JSON.parse(localStorage.getItem("Todos"));
 
   return (
     <>
@@ -22,13 +20,15 @@ function TodoList() {
           <table class="table">
             <thead>
               <tr>
+                <th scope="col">Sr#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Location</th>
-                <th scope="col">Description</th>
-                <th scope="col">Date</th>
                 <th scope="col">Status</th>
+                <th scope="col">Description</th>
+                <th scope="col">Location</th>
+                <th scope="col">Date</th>
                 <th scope="col">Date_Created</th>
                 <th scope="col">User_Id</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
 
@@ -38,12 +38,13 @@ function TodoList() {
                   <tr key={i}>
                     <th scope="row">{i + 1}</th>
                     <td colspan="1">{todo.title}</td>
-                    <td colspan="1">{todo.location}</td>
+                    <td colspan="1">{todo.status}</td>
                     <td colspan="1">{todo.description}</td>
+                    <td colspan="1">{todo.location}</td>
                     <td colspan="1">{todo.date}</td>
-                    <td colspan="1">{todo.Status}</td>
                     <td colspan="1">{todo.dateCreated}</td>
                     <td colspan="1">{todo.user_id}</td>
+                    <td colspan="1"></td>
                   </tr>
                 )
               })}

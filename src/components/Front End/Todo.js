@@ -1,73 +1,82 @@
-import React, { useState } from 'react';
-import TodoList from './TodoList';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRef } from 'react';
 
-// import "../../scss"
+const Todo = () => {
+  const titleRef = useRef(null);
+  const locationRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const dateRef = useRef(null);
 
-export default function Todo() {
-  let newTodo = JSON.parse(localStorage.getItem("Todos")) || [];
-  console.log("New Todo:", newTodo);
-  const [todo, setTodo] = useState({
-    title: "", location: "", description: "", date: "", status: "", dateCreated: "", user_id: ""
-  });
-  // let { title, loction, description } = state;
+  let navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    debugger;
-    setTodo({
-      ...todo,
-      [name]: value
-    });
-  };
-
-  const todoButton = (e) => {
+  const addNewTodo = (e) => {
     e.preventDefault();
-    // let pushedTodo = ...todos ,{newTodo};
-    // console.log("pushedTodo");
-    handleChange(e)
-    debugger;
-    let localTodo = localStorage.setItem("Todos",JSON.stringify(todo))
-    console.log(localTodo);
+
+    const newTodo = {
+      title: titleRef.current.value,
+      location: locationRef.current.value,
+      description: descriptionRef.current.value,
+      date: dateRef.current.value,
+      status: "active",
+      dateCreated: new Date().toISOString(),
+      user_id: Math.floor(Math.random() * 1000000)
+    };
+
+    let existingTodos = JSON.parse(localStorage.getItem("Todos")) || [];
+
+    const todoFound = existingTodos.find((todo) => todo.title === newTodo.title);
+    if (todoFound) {
+      return alert("Todo item already exists !!");
+    }
+
+    let updatedTodos = [...existingTodos, newTodo];
+    localStorage.setItem("Todos", JSON.stringify(updatedTodos));
+
+    titleRef.current.value = '';
+    locationRef.current.value = '';
+    descriptionRef.current.value = '';
+    dateRef.current.value = '';
+
+    navigate('/todoList');
   }
   
   return (
     <>
-      <div className="container w-50">
+      <div className="container w-50 border rounded mt-4 pb-3">
         <div className="row">
           <div className="col">
-            <h1 className='text-center'>Todos-list Page</h1>
+            <h1 className='text-center text-primary'>New Todo</h1>
             <hr />
           </div>
-          <form action="" >
+
+          <form onSubmit={addNewTodo}>
             <div className="col">
-              <label htmlFor="title"><h5 className=" text-primary my-2">Enter your Title here:</h5></label>
-              <input type="text"  name="title" id="title" className='form-control'/>
+              <label htmlFor="title"><h5 className="text-primary my-2">Title</h5></label>
+              <input ref={titleRef} type="text" name="title" id="title" placeholder='Title' required className='form-control' />
             </div>
 
             <div className="col">
-              <label htmlFor='location'>
-                <h5 className=" text-primary my-2">Enter your Location here:</h5>
-              </label>
-              <input type="text"  name="location" id='location' className='form-control'/>
+              <label htmlFor="description"><h5 className="text-primary my-2">Description</h5></label>
+              <input ref={descriptionRef} type="text" name="description" placeholder='Description' required id='description' className='form-control' />
             </div>
 
             <div className="col">
-             <label htmlFor="description">
-                <h5 className=" text-primary my-2">Enter your Description here:</h5>
-             </label>
-             <input type="text"  name="description" id='description' className='form-control'/>
+              <label htmlFor='location'><h5 className="text-primary my-2">Location</h5></label>
+              <input ref={locationRef} type="text" name="location" placeholder='Location' id='location' className='form-control' />
             </div>
 
             <div className="col">
-              <label htmlFor="date">
-                <h5 className=" text-primary my-2">Enter your Date here:</h5>
-              </label>
-              <input type="date" name="date" id='date' className='form-control my-2'/>
-              <button className='btn btn-primary' onClick={todoButton}>Enter Todo </button>
+              <label htmlFor="date"><h5 className="text-primary my-2">Date</h5></label>
+              <input ref={dateRef} type="date" name="date" id='date' className='form-control my-2' />
+
+              <button className='btn btn-primary mt-2 w-100' type='submit'>Save</button>
             </div>
           </form>
         </div>
       </div>
     </>
-  )
+  );
 }
+
+export default Todo;
