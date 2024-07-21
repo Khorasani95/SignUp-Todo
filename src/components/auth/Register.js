@@ -1,8 +1,9 @@
 import { React, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
-
+  let navigate = useNavigate();
   let user = { fullName: "", email: "", password: "" };
   const [state, setState] = useState(user);
   let { fullName, email, password } = state;
@@ -47,13 +48,14 @@ export default function Register() {
 
     localStorage.setItem("users", JSON.stringify(updatedUsers));
 
+    alert("User registered successfully, Now you can login");
+    navigate('/login');
   }
   return (
     <>
       {/* <p>fullName: {fullName}</p>
       <p>Email: {email}</p>
       <p>Password: {password}</p> */}
-
       <div className="container w-25 my-5">
         <div className="row ">
           <div className="card text-center ">
@@ -83,13 +85,12 @@ export default function Register() {
                     <button className="w-2 m-2 text-white bg-primary" onClick={registerUserButton}>Register</button>
                   </div>
                 </div>
-                    <p>Already Have An Account?   . <Link to={"/login"}>Login</Link></p>
+                    <p>Already Have An Account?<Link to={"/login"}>Login</Link></p>
               </form>
             </div>
           </div>
         </div>
       </div>
-
     </>
   )
 }

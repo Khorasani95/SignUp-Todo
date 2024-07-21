@@ -1,9 +1,9 @@
-// import React from 'react'
 import { React, useState } from 'react';
-// import { Link } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+  let navigate = useNavigate();
   let existingUsers = JSON.parse(localStorage.getItem('users')) || [];
 
   let user = { fullName: "", email: "", password: "" };
@@ -27,11 +27,11 @@ export default function Login() {
     // console.log(Array.isArray(existingUsers));
     
         if (checkUser) {
-          alert("User Logged In");
+          navigate('/home');
+          alert("User logged in");
         } else {
           alert("Register first");
         }
-    
   };
 
   
@@ -57,7 +57,7 @@ export default function Login() {
                 <div className="row pt-2">
                   <div className="col-12">
                     <input onChange={handleChange}  type="password" className="form-control" name="password"  placeholder="Enter Your Password " /><br />
-                    <p> <Link to="/Forget"> <b className='text-black '>Forget Password  </b></Link></p>
+                    <p> <Link to="/Forget"> <b className='text-black '>Forget Password?? </b></Link></p>
 
                     <div className="container">
                       <p className='p-6'>Don't have an account<Link to="/register"> Register Your Account</Link></p> 
